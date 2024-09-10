@@ -10,4 +10,15 @@
 
 <bean class="com.bean.Employee" id="emp2" scope="prototype"></bean>
 
+<bean class="com.bean.Employee" id="emp3" >
+	<constructor-arg value="100"></constructor-arg>
+	<constructor-arg value="Steven"></constructor-arg>
+	<constructor-arg value="34000"></constructor-arg>
+</bean>
+
+<bean class="com.bean.Employee" id="emp4">
+	<property name="id" value="101"></property>
+	<property name="name" value="Lex"></property>
+	<property name="salary" value="38000"></property>
+</bean>
 </beans>
