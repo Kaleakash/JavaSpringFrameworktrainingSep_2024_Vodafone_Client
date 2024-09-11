@@ -4,6 +4,7 @@ public class Employee {
 private int id;
 private String name;
 private float salary;
+private Address add;				// Employee has a address. 
 	public void display() {
 		System.out.println("This is employee class method");
 	}
@@ -19,9 +20,16 @@ private float salary;
 		this.salary = salary;
 		System.out.println("object created using parameter");
 	}
+	
+	public Address getAdd() {
+		return add;
+	}
+	public void setAdd(Address add) {
+		this.add = add;
+	}
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", add=" + add + "]";
 	}
 	public int getId() {
 		return id;

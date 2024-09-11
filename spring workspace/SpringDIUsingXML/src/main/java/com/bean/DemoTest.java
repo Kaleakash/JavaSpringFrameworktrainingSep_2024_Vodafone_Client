@@ -28,17 +28,23 @@ public class DemoTest {
 //		Employee e4 = (Employee)bean.getBean("emp2");
 //		e4.display();
 		
-		Employee e5 = (Employee)bean.getBean("emp1");
-		System.out.println(e5);    // it will call toString method to get details 
+//		Employee e5 = (Employee)bean.getBean("emp1");
+//		System.out.println(e5);    // it will call toString method to get details 
+//		
+//		Employee e6 = (Employee)bean.getBean("emp2");
+//		System.out.println(e6);
+//		
+//		Employee e7 = (Employee)bean.getBean("emp3");
+//		System.out.println(e7);
+//		
+//		Employee e8 = (Employee)bean.getBean("emp4");
+//		System.out.println(e8);
 		
-		Employee e6 = (Employee)bean.getBean("emp2");
-		System.out.println(e6);
+		//Address add = (Address)bean.getBean("address");
+		//System.out.println(add);
 		
-		Employee e7 = (Employee)bean.getBean("emp3");
-		System.out.println(e7);
-		
-		Employee e8 = (Employee)bean.getBean("emp4");
-		System.out.println(e8);
+		Employee employee = (Employee)bean.getBean("employee");
+		System.out.println(employee);
 	}
 
 }
