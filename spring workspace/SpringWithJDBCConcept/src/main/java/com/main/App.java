@@ -23,7 +23,7 @@ public class App {
 	System.out.println("Enter your choice");
 			choice = sc.nextInt();
 			switch (choice) {
-			case 1:Product p1 = (Product)ac.getBean("product");
+			case 1: Product p1 = (Product)ac.getBean("product");
 					System.out.println("Enter the product id");
 					pid = sc.nextInt();
 					System.out.println("Enter the product pname");
@@ -36,11 +36,13 @@ public class App {
 					result = ps.storeProduct(p1);
 					System.out.println(result);
 					break;
+					
 			case 2:System.out.println("Enter the product id to delete");
 			      pid = sc.nextInt();
 			      result = ps.deleteProduct(pid);
 			      System.out.println(result);
 			      break;
+			      
 			case 3:System.out.println("Enter the product pid");
 			      pid = sc.nextInt();
 			      System.out.println("Enter the product price to update");
@@ -51,11 +53,13 @@ public class App {
 			      result = ps.updateProductPrice(p2);
 			      System.out.println(result);
 			      break;
+			      
 			case 4:List<Product> listOfProduct = ps.findAll();
 			      for(Product p : listOfProduct) {
 			    	  System.out.println(p);
 			      }
 			      break;
+			      
 			default:System.out.println("wrong choice");
 				break;
 			}
