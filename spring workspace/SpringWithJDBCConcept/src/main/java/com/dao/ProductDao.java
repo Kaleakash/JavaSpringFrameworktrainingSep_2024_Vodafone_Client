@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -46,31 +47,48 @@ public class ProductDao {
 		}
 	}
 	
+//	public int updateProductPrice(Product product) {
+//		try {
+//		Connection con = ds.getConnection();
+//		PreparedStatement pstmt = con.prepareStatement("update product set price = ? where pid = ?");
+//		pstmt.setFloat(1, product.getPrice());
+//		pstmt.setInt(2, product.getPid());
+//		return pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			System.err.println(e);
+//			return 0;
+//		}
+//	}
+	
 	public int updateProductPrice(Product product) {
 		try {
-		Connection con = ds.getConnection();
-		PreparedStatement pstmt = con.prepareStatement("update product set price = ? where pid = ?");
-		pstmt.setFloat(1, product.getPrice());
-		pstmt.setInt(2, product.getPid());
-		return pstmt.executeUpdate();
+return jdbcTemplate.update("update product set price = ? where pid = ?",product.getPrice(),product.getPid());
 		} catch (Exception e) {
 			System.err.println(e);
 			return 0;
 		}
 	}
+	
+//	public int deleteProduct(int pid) {
+//		try {
+//		Connection con = ds.getConnection();
+//		PreparedStatement pstmt = con.prepareStatement("delete from product where pid=?");
+//		pstmt.setInt(1, pid);
+//		return pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			System.err.println(e);
+//			return 0;
+//		}
+//	}
 	
 	public int deleteProduct(int pid) {
 		try {
-		Connection con = ds.getConnection();
-		PreparedStatement pstmt = con.prepareStatement("delete from product where pid=?");
-		pstmt.setInt(1, pid);
-		return pstmt.executeUpdate();
+	return jdbcTemplate.update("delete from product where pid=?", pid);
 		} catch (Exception e) {
 			System.err.println(e);
 			return 0;
 		}
 	}
-	
 	public List<Product> findAll() {
 		List<Product> listOfProducts = new ArrayList<Product>();
 		try {
@@ -89,4 +107,14 @@ public class ProductDao {
 		}
 		return listOfProducts;
 	}
+	public List<Map<String, Object>> findAllProductAsMap() {
+		try {
+	return jdbcTemplate.queryForList("select * from product");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		return null;
+	}
+	
+	
 }
