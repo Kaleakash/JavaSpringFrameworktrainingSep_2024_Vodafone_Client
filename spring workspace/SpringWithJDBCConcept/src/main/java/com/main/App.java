@@ -1,10 +1,8 @@
 package com.main;
 
+import java.util.List;
 import java.util.Scanner;
-
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.bean.Product;
 import com.service.ProductService;
 
@@ -38,7 +36,26 @@ public class App {
 					result = ps.storeProduct(p1);
 					System.out.println(result);
 					break;
-
+			case 2:System.out.println("Enter the product id to delete");
+			      pid = sc.nextInt();
+			      result = ps.deleteProduct(pid);
+			      System.out.println(result);
+			      break;
+			case 3:System.out.println("Enter the product pid");
+			      pid = sc.nextInt();
+			      System.out.println("Enter the product price to update");
+			      price = sc.nextFloat();
+			      Product p2 = (Product)ac.getBean("product");
+			      p2.setPid(pid);
+			      p2.setPrice(price);
+			      result = ps.updateProductPrice(p2);
+			      System.out.println(result);
+			      break;
+			case 4:List<Product> listOfProduct = ps.findAll();
+			      for(Product p : listOfProduct) {
+			    	  System.out.println(p);
+			      }
+			      break;
 			default:System.out.println("wrong choice");
 				break;
 			}
