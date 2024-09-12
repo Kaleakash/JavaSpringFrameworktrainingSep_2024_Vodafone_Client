@@ -3,6 +3,7 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.bean.Product;
@@ -18,8 +20,8 @@ import com.bean.Product;
 @Repository
 public class ProductDao {
 
-	@Autowired 
-	DataSource ds;			// byType auto wired 
+	//@Autowired 
+	//DataSource ds;			// byType auto wired 
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -89,23 +91,33 @@ return jdbcTemplate.update("update product set price = ? where pid = ?",product.
 			return 0;
 		}
 	}
+//	public List<Product> findAll() {
+//		List<Product> listOfProducts = new ArrayList<Product>();
+//		try {
+//		Connection con = ds.getConnection();
+//		PreparedStatement pstmt = con.prepareStatement("select * from product");
+//		ResultSet rs = pstmt.executeQuery();
+//		while(rs.next()) {
+//			Product p = new Product();
+//			p.setPid(rs.getInt(1));
+//			p.setPname(rs.getString(2));
+//			p.setPrice(rs.getFloat(3));
+//			listOfProducts.add(p);
+//		}
+//		} catch (Exception e) {
+//			System.err.println(e);
+//		}
+//		return listOfProducts;
+//	}
+	
 	public List<Product> findAll() {
-		List<Product> listOfProducts = new ArrayList<Product>();
 		try {
-		Connection con = ds.getConnection();
-		PreparedStatement pstmt = con.prepareStatement("select * from product");
-		ResultSet rs = pstmt.executeQuery();
-		while(rs.next()) {
-			Product p = new Product();
-			p.setPid(rs.getInt(1));
-			p.setPname(rs.getString(2));
-			p.setPrice(rs.getFloat(3));
-			listOfProducts.add(p);
-		}
+			// 1st parameter query and 2nd para RowMapper interface reference. 
+return jdbcTemplate.query("select * from product", new MyRowMapper());		
 		} catch (Exception e) {
 			System.err.println(e);
 		}
-		return listOfProducts;
+		return null;
 	}
 	public List<Map<String, Object>> findAllProductAsMap() {
 		try {
@@ -115,6 +127,15 @@ return jdbcTemplate.update("update product set price = ? where pid = ?",product.
 		}
 		return null;
 	}
-	
-	
+}
+// Global while loop 
+class MyRowMapper implements RowMapper<Product>{
+	@Override
+	public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Product p1 = new Product();
+		p1.setPid(rs.getInt(1));
+		p1.setPname(rs.getString(2));
+		p1.setPrice(rs.getFloat(3));
+		return p1;
+	}
 }
