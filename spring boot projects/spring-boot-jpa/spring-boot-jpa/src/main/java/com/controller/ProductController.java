@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ public class ProductController {
 	
 	@RequestMapping(value = "",method = RequestMethod.GET)
 	public String indexPage(Product pp, Model mm) {
+		List<Product> products = productService.findAllProducts();
+		mm.addAttribute("products", products);
 		mm.addAttribute("product", pp);
 		return "index";
 	}
@@ -28,6 +32,8 @@ public class ProductController {
 		pp.setPid(0);
 		pp.setPname("");
 		pp.setPrice(0.0f);
+		List<Product> products = productService.findAllProducts();
+		mm.addAttribute("products", products);
 		mm.addAttribute("product", pp);
 		return "index";
 	}

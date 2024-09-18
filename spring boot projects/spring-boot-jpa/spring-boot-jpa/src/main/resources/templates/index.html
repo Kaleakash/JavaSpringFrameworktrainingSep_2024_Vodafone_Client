@@ -17,5 +17,18 @@
 <input type="submit" value="Add product"/>
 <input type="reset" value="reset"/>
 </form>
+<hr/>
+<table border="1">
+	<tr>
+		<th>PID</th>
+		<th>PName</th>
+		<th>Price</th>
+	</tr>
+	<tr th:each="p:${products}">
+		<td th:text="${p.pid}"></td>
+		<td th:text="${p.pname}"></td>
+		<td th:text="${p.price}"></td>
+	</tr>
+</table>
 </body>
 </html>
