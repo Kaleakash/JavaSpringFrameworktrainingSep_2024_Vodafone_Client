@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<span th:text="${msg}" style="color:red"></span>
+<h2>Product Management System</h2>
+<form action="#" th:action="@{addProduct}" method="post" th:object="${product}">
+<label>PId</label>
+<input type="number" th:field="*{pid}" /><br/>
+<label>PName</label>
+<input type="text" th:field="*{pname}" /><br/>
+<label>Price</label>
+<input type="number" th:field="*{price}"/> <br/>
+<input type="submit" value="Add product"/>
+<input type="reset" value="reset"/>
+</form>
+</body>
+</html>
