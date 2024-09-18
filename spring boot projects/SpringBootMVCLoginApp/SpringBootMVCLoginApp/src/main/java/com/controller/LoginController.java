@@ -21,6 +21,11 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "signuppage",method = RequestMethod.GET)
+	public String signUpPageOpen(Login ll, Model mm) {  // DI for login and model api 
+		mm.addAttribute("login", ll);		// login object stored in model scope. 
+		return "signup";
+	}
 	
 	@RequestMapping(value = "signIn",method = RequestMethod.POST)
 	public String signIn(Login ll, Model mm) {  // DI for login and model api 
@@ -33,3 +38,5 @@ public class LoginController {
 		}
 	}
 }
+
+
