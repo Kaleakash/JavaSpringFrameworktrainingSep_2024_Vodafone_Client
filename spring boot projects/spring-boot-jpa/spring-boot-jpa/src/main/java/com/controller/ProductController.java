@@ -33,8 +33,8 @@ public class ProductController {
 			result = productService.storeProduct(pp);	
 		}else {
 			result = productService.updateProductPrice(pp);
-			mm.addAttribute("bb", "Add Product");
 		}
+		mm.addAttribute("bb", "Add Product");
 		mm.addAttribute("msg", result);
 		pp.setPid(0);
 		pp.setPname("");
