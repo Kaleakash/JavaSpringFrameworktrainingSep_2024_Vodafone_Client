@@ -23,11 +23,13 @@
 		<th>PID</th>
 		<th>PName</th>
 		<th>Price</th>
+		<th>Delete</th>
 	</tr>
 	<tr th:each="p:${products}">
 		<td th:text="${p.pid}"></td>
 		<td th:text="${p.pname}"></td>
 		<td th:text="${p.price}"></td>
+		<td><a th:href="@{deleteProduct(pid=${p.pid})}">Delete</a></td>
 	</tr>
 </table>
 </body>

@@ -27,4 +27,16 @@ public class ProductService {
 	public List<Product> findAllProducts() {
 		return productDao.findAllProduct();
 	}
+	
+	public String deleteProduct(int pid) {
+		if(productDao.deleteProduct(pid)>0) {
+			return "Record deleted successfully";
+		}else {
+			return "Record not present";
+		}
+	}
+	
 }
+
+
+
