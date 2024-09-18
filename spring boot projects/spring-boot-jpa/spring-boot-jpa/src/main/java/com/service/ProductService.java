@@ -28,6 +28,13 @@ public class ProductService {
 		return productDao.findAllProduct();
 	}
 	
+	public String updateProductPrice(Product product) {
+		if(productDao.updateProductPrice(product)>0) {
+			return "Product price updated";
+		}else {
+			return "Product price didn't update";
+		}
+	}
 	public String deleteProduct(int pid) {
 		if(productDao.deleteProduct(pid)>0) {
 			return "Record deleted successfully";
@@ -36,6 +43,9 @@ public class ProductService {
 		}
 	}
 	
+	public Product findProduct(int pid) {
+		return productDao.searchProductByPid(pid);
+	}
 }
 
 

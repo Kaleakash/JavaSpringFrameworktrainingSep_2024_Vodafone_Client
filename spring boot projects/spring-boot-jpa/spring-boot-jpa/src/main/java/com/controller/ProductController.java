@@ -23,12 +23,18 @@ public class ProductController {
 		List<Product> products = productService.findAllProducts();
 		mm.addAttribute("products", products);
 		mm.addAttribute("product", pp);
+			mm.addAttribute("bb", "Add Product");
 		return "index";
 	}
 	@RequestMapping(value = "addProduct",method = RequestMethod.POST)
-	public String addProduct(Product pp, Model mm) {
-		String result = productService.storeProduct(pp);
-		System.out.println(result);
+	public String addProduct(Product pp, Model mm,@RequestParam("mySubmitButton") String buttonValue) {
+		String result="";
+		if(buttonValue.equals("Add Product")) {
+			result = productService.storeProduct(pp);	
+		}else {
+			result = productService.updateProductPrice(pp);
+			mm.addAttribute("bb", "Add Product");
+		}
 		mm.addAttribute("msg", result);
 		pp.setPid(0);
 		pp.setPname("");
@@ -50,6 +56,18 @@ public class ProductController {
 		List<Product> products = productService.findAllProducts();
 		mm.addAttribute("products", products);
 		mm.addAttribute("product", pp);
+		mm.addAttribute("bb", "Add Product");
+		return "index";
+	}
+	
+	@RequestMapping(value = "updateProductInfo",method = RequestMethod.GET)
+	public String findProductInfo(Product pp, Model mm, @RequestParam("pid") int pid) {
+		// hold product record retrieve from db.
+		pp = productService.findProduct(pid);
+		List<Product> products = productService.findAllProducts();
+		mm.addAttribute("products", products);
+		mm.addAttribute("product", pp);
+		mm.addAttribute("bb", "Update Product");
 		return "index";
 	}
 }
