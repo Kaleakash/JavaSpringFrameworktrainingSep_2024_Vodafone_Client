@@ -56,4 +56,21 @@ public class EmployeeController {
 		listOfEmp.add(emp3);
 		return listOfEmp;
 	}
+	
+	// http://localhost:9191/post_test
+	
+	@RequestMapping(value = "post_test",method = RequestMethod.POST)
+	public String postMethodTest() {
+		return "Post method test";
+	}
+	// http://localhost:9191/store_employee			, method : post 
+	// data : {"id":100,"name":"Steven","salary":45000}
+	
+	@RequestMapping(value = "store_employee",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String storeEmployee(Employee employee) {
+		System.out.println(employee);
+		return "Post method test "+employee.getName();
+	}
 }
