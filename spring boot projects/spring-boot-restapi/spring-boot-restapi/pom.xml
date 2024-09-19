@@ -40,6 +40,22 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-impl</artifactId>
+    <version>4.0.3</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
+<dependency>
+    <groupId>org.glassfish.jaxb</groupId>
+    <artifactId>jaxb-runtime</artifactId>
+    <version>4.0.3</version>
+</dependency>
+
+
 	</dependencies>
 
 	<build>
