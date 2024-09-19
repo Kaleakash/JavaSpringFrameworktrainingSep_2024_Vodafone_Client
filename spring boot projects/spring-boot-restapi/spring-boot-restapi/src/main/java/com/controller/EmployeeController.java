@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,8 +70,17 @@ public class EmployeeController {
 	@RequestMapping(value = "store_employee",
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String storeEmployee(Employee employee) {
-		System.out.println(employee);
+	public String storeEmployee(@RequestBody Employee employee) {  // @RequestBody 
+		System.out.println(employee);					// annotation is use to extract json data from request body
 		return "Post method test "+employee.getName();
+	}
+	
+	@RequestMapping(value = "emp_json",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_XML_VALUE)
+	public Employee convertJsonToXML(@RequestBody Employee employee) {  // @RequestBody 
+		employee.setSalary(employee.getSalary()+6000);
+		return employee;
 	}
 }
