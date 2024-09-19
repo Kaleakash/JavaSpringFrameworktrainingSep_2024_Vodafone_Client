@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,11 +77,20 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "emp_json",
-			method = RequestMethod.POST,
+			method = RequestMethod.PUT,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_XML_VALUE)
 	public Employee convertJsonToXML(@RequestBody Employee employee) {  // @RequestBody 
 		employee.setSalary(employee.getSalary()+6000);
 		return employee;
 	}
+	
+	// http://localhost:9191/emp_delete/100
+	
+	@RequestMapping(value = "emp_delete/{id}",method = RequestMethod.DELETE)
+	public String deleteEmployeeInfo(@PathVariable("id") int id) {
+		return "Employee record delete using id as "+id;
+	}
+	
+	
 }
