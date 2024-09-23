@@ -50,6 +50,8 @@ public class OrdersService {
 		}
 	}
 	
-	
+	public List<Orders> findOrdersByProductId(int pid){
+		return ordersRepository.findOrderByProcuctId(pid);
+	}
 	
 }

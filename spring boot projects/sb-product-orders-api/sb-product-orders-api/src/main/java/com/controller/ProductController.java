@@ -49,4 +49,13 @@ public class ProductController {
 	public String findProducById(@PathVariable("pid") int pid) {
 		return productService.findProduct(pid);
 	}
+	
+	
+	 // curl -X GET http://localhost:9191/products/findbyprice/45000		
+		@GetMapping(value = "findbyprice/{price}",produces = MediaType.APPLICATION_JSON_VALUE)
+		public List<Product> findProducByprice(@PathVariable("price") float price) {
+			return productService.findProductByPrice(price);
+		}
+	
+	
 }

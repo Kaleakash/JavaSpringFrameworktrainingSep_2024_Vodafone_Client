@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.Orders;
@@ -32,9 +33,16 @@ public class OrdersController {
 	public List<Orders> findAllOrders() {
 		return ordersService.findAllOrders();
 	}
-	// curl -X GET http://localhost:9191/orders/findbyid/1
+	// curl -X GET http://localhost:9191/orders/findbyid/1 path param 
 	@GetMapping(value = "findbyid/{oid}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public Orders findAllOrderById(@PathVariable("oid") int oid) {
 		return ordersService.findOrderById(oid);
+	}
+	
+	// curl -X GET http://localhost:9191/orders/findorderbypid?pid=100 query param
+	
+	@GetMapping(value = "findorderbypid",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Orders> findOrderDetailsByPId(@RequestParam("pid") int pid) {
+		return ordersService.findOrdersByProductId(pid);
 	}
 }

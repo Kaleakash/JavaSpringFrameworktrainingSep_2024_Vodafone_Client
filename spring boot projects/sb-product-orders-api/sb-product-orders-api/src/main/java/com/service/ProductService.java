@@ -59,4 +59,8 @@ public class ProductService {
 	public List<Product> findAll() {
 		return productRepository.findAll();
 	}
+	
+	public List<Product> findProductByPrice(float price){
+		return productRepository.findProductByPrice(price);
+	}
 }
