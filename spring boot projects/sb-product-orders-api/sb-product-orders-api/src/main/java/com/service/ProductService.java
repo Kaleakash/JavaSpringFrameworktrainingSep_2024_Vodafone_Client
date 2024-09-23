@@ -63,4 +63,12 @@ public class ProductService {
 	public List<Product> findProductByPrice(float price){
 		return productRepository.findProductByPrice(price);
 	}
+	
+	public String updateProductDetailsWithCustomQuery(Product product) {
+		if(productRepository.updateProductQtyUsingPrice(product.getQty(), product.getPrice())>0) {
+			return "Product updated successfully";
+		}else {
+			return "Product didn't update";
+		}
+	}
 }

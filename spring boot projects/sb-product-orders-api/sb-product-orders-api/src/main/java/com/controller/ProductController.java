@@ -57,5 +57,17 @@ public class ProductController {
 			return productService.findProductByPrice(price);
 		}
 	
-	
+		// curl -X PUT http://localhost:9191/products/update_qty -H "Content-Type:application/json" -d '{"price":45000,"qty":55}'	
+		@PutMapping(value = "update_qty",consumes = MediaType.APPLICATION_JSON_VALUE)
+		public String updateProductWithCustomQuery(@RequestBody Product product) {
+			return productService.updateProductDetailsWithCustomQuery(product);
+		}
 }
+
+
+
+
+
+
+
+
