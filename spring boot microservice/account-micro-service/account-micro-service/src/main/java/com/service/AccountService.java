@@ -54,6 +54,7 @@ public class AccountService {
 	}
 	
 	public String findBalance(int accno) {
+		System.err.println("Client Sent request to get Balance Details");
 		Optional<Account> result = accountRepository.findById(accno);
 		if(result.isPresent()) {
 			Account acc = result.get();

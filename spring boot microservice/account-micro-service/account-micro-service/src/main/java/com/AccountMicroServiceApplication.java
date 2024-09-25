@@ -14,7 +14,7 @@ public class AccountMicroServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AccountMicroServiceApplication.class, args);
-		System.err.println("account micro service up on port number 8383");
+		System.err.println("account micro service up on port number random port number");
 	}
 
 }
