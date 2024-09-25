@@ -473,6 +473,17 @@ jwt token
 
 
 
+
+database details in application.properties file with h2 database 
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=test
+spring.jpa.hibernate.ddl-auto=update 
+spring.h2.console.enabled=true
+
+
+
 database details in application.properties file 
 
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
