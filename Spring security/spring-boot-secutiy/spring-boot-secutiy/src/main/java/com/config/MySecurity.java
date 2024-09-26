@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration						// we were writing using xml file before spring boot. 
 @EnableWebSecurity
@@ -39,15 +41,26 @@ public class MySecurity {
 	String secondUserEncodePassword = passwordEncorder().encode(secondUserPassword);
 	System.out.println(firstUserEncodePassword+" "+secondUserEncodePassword);
 	
-	users.add(User.withUsername("akash").password(firstUserEncodePassword).build());
-	users.add(User.withUsername("steven").password(secondUserEncodePassword).build());
-
-	
+	users.add(User.withUsername("akash").password(firstUserEncodePassword).roles("ADMIN","USER").build());
+	users.add(User.withUsername("steven").password(secondUserEncodePassword).roles("USER").build());
 	return new InMemoryUserDetailsManager(users);	
 	}
-	
 	@Bean
 	public PasswordEncoder passwordEncorder() {
 		return new BCryptPasswordEncoder();
 	}
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		return http.authorizeHttpRequests(
+				httpSecurity-> {
+					httpSecurity.requestMatchers("/public/**").permitAll();			// no auth required 
+					httpSecurity.requestMatchers("/admin/**").hasAnyRole("ADMIN");
+					httpSecurity.requestMatchers("/user/**").hasAnyRole("USER");
+					httpSecurity.anyRequest().authenticated();
+				}
+		).formLogin(login->login.permitAll()).				// open the default login page 
+		build();
+	}
+	
+	
 }

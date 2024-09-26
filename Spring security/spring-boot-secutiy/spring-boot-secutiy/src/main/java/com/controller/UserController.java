@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("public")
-public class PublicController {
+@RequestMapping("user")
+public class UserController {
 
 	@GetMapping(value = "")
 	public String greeting() {
-		return "Welcome to Spring security Api - Public";
+		return "Welcome to Spring security Api - User";
 	}
 }
